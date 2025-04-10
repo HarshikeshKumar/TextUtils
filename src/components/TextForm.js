@@ -21,6 +21,14 @@ function TextForm(props) {
     let newText = "";
     setText(newText);
   };
+
+  const handleCopy = () => {
+    console.log("I am copy");
+    var text = document.getElementById("exampleFormControlTextarea1");
+    text.select();
+    // text.setSelectionRange(0, 9999);
+    navigator.clipboard.writeText(text.value);
+  };
   return (
     <>
       <div className="container">
@@ -54,6 +62,9 @@ function TextForm(props) {
           className="btn btn-success"
         >
           Clear Text
+        </button>{" "}
+        <button type="button" onClick={handleCopy} className="btn btn-primary">
+          Copy Text
         </button>
       </div>
 
