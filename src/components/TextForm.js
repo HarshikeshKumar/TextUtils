@@ -26,16 +26,25 @@ function TextForm(props) {
     console.log("I am copy");
     var text = document.getElementById("exampleFormControlTextarea1");
     text.select();
-    // text.setSelectionRange(0, 9999);
     navigator.clipboard.writeText(text.value);
+  };
+
+  const handleExtraSpaces = () => {
+    let newText = text.split(/[ ]+/);
+    setText(newText.join(" "));
   };
   return (
     <>
       <div className="container">
-        <h1>{props.heading}</h1>
+        <h1 style={{ color: props.mode === "light" ? "black" : "white" }}>
+          {props.heading}
+        </h1>
         <div className="mb-3">
           <textarea
             className="form-control"
+            style={{
+              backgroundColor: props.mode === "dark" ? "gray" : "white",
+            }}
             id="exampleFormControlTextarea1"
             value={text}
             onChange={handleOnChange}
@@ -65,10 +74,20 @@ function TextForm(props) {
         </button>{" "}
         <button type="button" onClick={handleCopy} className="btn btn-primary">
           Copy Text
+        </button>{" "}
+        <button
+          type="button"
+          onClick={handleExtraSpaces}
+          className="btn btn-primary"
+        >
+          Remove Extra Spaces
         </button>
       </div>
 
-      <div className="container my-3">
+      <div
+        className="container my-3"
+        style={{ color: props.mode === "light" ? "black" : "white" }}
+      >
         <h2>Your text summary</h2>
         <p>
           <b>{text.split(" ").length} </b> words, <b>{text.length}</b>{" "}

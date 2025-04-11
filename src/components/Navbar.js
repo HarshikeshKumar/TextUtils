@@ -1,9 +1,11 @@
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import React from "react";
 
 export default function Navbar(props) {
   return (
-    <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
+    <nav
+      className={`navbar navbar-expand-lg bg-${props.mode} navbar-${props.mode}`}
+    >
       <div className="container-fluid">
         <a className="navbar-brand" href="/">
           {props.title}
@@ -28,11 +30,11 @@ export default function Navbar(props) {
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/">
-                {props.aboutText}
+                About
               </a>
             </li>
           </ul>
-          <form className="d-flex" role="search">
+          {/* <form className="d-flex" role="search">
             <input
               className="form-control me-2"
               type="search"
@@ -42,7 +44,27 @@ export default function Navbar(props) {
             <button className="btn btn-outline-success" type="submit">
               Search
             </button>
-          </form>
+          </form> */}
+
+          <div className="form-check form-switch">
+            <input
+              className="form-check-input"
+              type="checkbox"
+              onClick={props.toggleMode}
+              role="switch"
+              id="switchCheckDefault"
+            />
+            <label
+              className={`form-check-label ${
+                props.mode === "light" ? "text-dark" : "text-light"
+              }`}
+              htmlFor="switchCheckDefault"
+            >
+              {props.mode === "light"
+                ? "Enable Dark Mode"
+                : "Enable Light Mode"}
+            </label>
+          </div>
         </div>
       </div>
     </nav>
@@ -50,7 +72,7 @@ export default function Navbar(props) {
 }
 
 // Set prop types
-Navbar.propTypes = {
-  title: PropTypes.string,
-  aboutText: PropTypes.string,
-};
+// Navbar.propTypes = {
+//   title: PropTypes.string,
+//   aboutText: PropTypes.string,
+// };
