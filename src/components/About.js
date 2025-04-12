@@ -15,13 +15,13 @@ function About() {
         backgroundColor: "black",
         border: "1px solid white",
       });
-      setBtnText("Enable Dark Mode");
+      setBtnText("Enable Light Mode");
     } else {
       setMyStyle({
         color: "black",
         backgroundColor: "white",
       });
-      setBtnText("Enable Light Mode");
+      setBtnText("Enable Dark Mode");
     }
   };
 
